@@ -1,0 +1,59 @@
+{
+  "name": "pg-transit",
+  "description": "Reliable Messaging, Queues, and Event Logs - All in PostgreSQL",
+  "version": "0.0.2",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delimaa/pg-transit.git"
+  },
+  "keywords": [
+    "javascript",
+    "typescript",
+    "nodejs",
+    "postgresql",
+    "messaging",
+    "events",
+    "queue",
+    "pubsub"
+  ],
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js"
+  },
+  "scripts": {
+    "build": "bun run typecheck && bun run clean-dist && bun run build:cjs && bun run build:esm && bun run generate-d.ts",
+    "build:cjs": "bun build --format=cjs --outdir=\"./dist/cjs\" --target=node --sourcemap=linked --packages=external src/index.ts",
+    "build:esm": "bun build --format=esm --outdir=\"./dist/esm\" --target=node --sourcemap=linked --packages=external src/index.ts",
+    "clean-dist": "rm -rf ./dist",
+    "format": "prettier --write .",
+    "generate-d.ts": "tsc -p tsconfig.types.json",
+    "typecheck": "tsc --noEmit",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "prepublishOnly": "bun run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prettier": "^3.5.3",
+    "prettier-plugin-embed": "^0.5.0",
+    "prettier-plugin-sql": "^0.19.1",
+    "typescript": "^5",
+    "vitepress": "^1.6.3",
+    "vitepress-plugin-group-icons": "^1.5.5"
+  },
+  "dependencies": {
+    "cron-parser": "^5.1.1",
+    "postgres": "^3.4.5",
+    "uuid": "^11.1.0"
+  }
+}

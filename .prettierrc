@@ -1,0 +1,8 @@
+{
+  "singleQuote": true,
+  "printWidth": 120,
+  "plugins": ["prettier-plugin-embed", "prettier-plugin-sql"],
+  "embeddedSqlTags": ["sql", "this.sql", "props.sql"],
+  "language": "postgresql",
+  "keywordCase": "upper"
+}
