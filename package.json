@@ -1,7 +1,7 @@
 {
   "name": "pg-transit",
   "description": "Reliable Messaging, Queues, and Event Logs - All in PostgreSQL",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -19,6 +19,11 @@
     "events",
     "queue",
     "pubsub"
+  ],
+  "files": [
+    "/dist",
+    "LICENCE",
+    "README.md"
   ],
   "type": "module",
   "main": "./dist/cjs/index.js",
