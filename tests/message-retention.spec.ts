@@ -3,7 +3,7 @@ import type { JSONValue } from 'postgres';
 import type { SubscriptionMessage } from '../src';
 import { createTestContext, randomName } from './utils';
 
-const { transit, newTransit } = createTestContext();
+const { transit, newPgTransit } = createTestContext();
 
 test('By default, retention policy does not keep any acknowledged message', async () => {
   const topic = transit.topic(randomName('topic'));
@@ -130,7 +130,7 @@ test('Auto trim topics each 1 minutes by default', async () => {
 });
 
 test('Configure custom auto trim interval', async () => {
-  const transit = newTransit({
+  const transit = newPgTransit({
     trimTopicsIntervalInMs: 10_000,
   });
 

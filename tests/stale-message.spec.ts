@@ -3,7 +3,7 @@ import type { JSONValue } from 'postgres';
 import type { SubscriptionMessage } from '../src';
 import { createTestContext, randomName } from './utils';
 
-const { transit, newTransit } = createTestContext();
+const { transit, newPgTransit } = createTestContext();
 
 test('Reset stale messages', async () => {
   transit.staleMessageTimeoutInMs = 1;
@@ -130,7 +130,7 @@ test('Send heartbeat at regular interval to keep message alive', async () => {
 });
 
 test('Configure reset stale message interval', async () => {
-  const transit = newTransit({
+  const transit = newPgTransit({
     resetStaleMessagesIntervalInMs: 10_000,
   });
 

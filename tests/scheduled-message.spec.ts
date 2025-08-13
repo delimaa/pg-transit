@@ -3,7 +3,7 @@ import type { SubscriptionMessage } from '../src';
 import { createTestContext, randomName } from './utils';
 import type { JSONValue } from 'postgres';
 
-const { transit, newTransit } = createTestContext();
+const { transit, newPgTransit } = createTestContext();
 
 test('Schedule a message using CRON', async () => {
   const topic = transit.topic(randomName('topic'));
@@ -151,7 +151,7 @@ test('Specify a number of repetitions', async () => {
 });
 
 test('Configure scheduled messages processing interval', async () => {
-  const transit = newTransit({
+  const transit = newPgTransit({
     scheduledMessagesProcessingIntervalInMs: 1_000,
   });
 

@@ -30,7 +30,7 @@ export function createTestContext(options?: PgTransitOptions) {
 
   return {
     transit,
-    newTransit(options?: Omit<PgTransitOptions, 'connection'>) {
+    newPgTransit(options?: Omit<PgTransitOptions, 'connection'>) {
       const transit = pgTransit({ connection: TEST_CONNECTION_OPTIONS, ...options });
       transits.push(transit);
       return transit;

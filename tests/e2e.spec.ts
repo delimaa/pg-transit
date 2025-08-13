@@ -2,7 +2,7 @@ import { expect, test } from 'bun:test';
 import type { SubscriptionMessage } from '../src';
 import { createTestContext, randomName } from './utils';
 
-const { newTransit } = createTestContext();
+const { newPgTransit } = createTestContext();
 
 type Email = {
   from: string;
@@ -12,8 +12,8 @@ type Email = {
 };
 
 test('Two app instances, one email topic, two subscriptions: one job queue style sending emails, one sequential log style logging emails', async () => {
-  const transit1 = newTransit({ staleMessageTimeoutInMs: 200, resetStaleMessagesIntervalInMs: 100 });
-  const transit2 = newTransit({ staleMessageTimeoutInMs: 200, resetStaleMessagesIntervalInMs: 100 });
+  const transit1 = newPgTransit({ staleMessageTimeoutInMs: 200, resetStaleMessagesIntervalInMs: 100 });
+  const transit2 = newPgTransit({ staleMessageTimeoutInMs: 200, resetStaleMessagesIntervalInMs: 100 });
 
   const topicName = randomName('email_topic');
   const app1Topic = transit1.topic<Email>(topicName);

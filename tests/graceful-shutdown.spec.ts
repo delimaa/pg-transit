@@ -1,10 +1,10 @@
 import { test } from 'bun:test';
 import { createTestContext, randomName } from './utils';
 
-const { newTransit } = createTestContext();
+const { newPgTransit } = createTestContext();
 
 test('Graceful shutdown when resetting stale jobs', async () => {
-  const transit = newTransit({
+  const transit = newPgTransit({
     staleMessageTimeoutInMs: 0,
   });
 
@@ -24,7 +24,7 @@ test('Graceful shutdown when resetting stale jobs', async () => {
 });
 
 test('Graceful shutdown when trimming topics', async () => {
-  const transit = newTransit();
+  const transit = newPgTransit();
 
   const topic = transit.topic(randomName('topic'), {
     maxMessagesRetention: 10,
@@ -44,7 +44,7 @@ test('Graceful shutdown when trimming topics', async () => {
 });
 
 test('Graceful shutdown when processing scheduled messages', async () => {
-  const transit = newTransit();
+  const transit = newPgTransit();
 
   const topic = transit.topic(randomName('topic'));
 
@@ -62,7 +62,7 @@ test('Graceful shutdown when processing scheduled messages', async () => {
 });
 
 test('Graceful shutdown when initializing topics, subscriptions and consumers', async () => {
-  const transit = newTransit();
+  const transit = newPgTransit();
 
   const topic1 = transit.topic(randomName('topic'));
   const topic2 = transit.topic(randomName('topic'));
